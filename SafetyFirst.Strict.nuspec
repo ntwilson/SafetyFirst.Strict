@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>SafetyFirst.Strict</id>
+    <version>1.0.0</version>
+    <authors>nathan wilson</authors>
+    <owners>nathan wilson</owners>
+    <description>Select partial functions made to have warnings in F#</description>
+    <summary>Select partial functions made to have warnings in F#</summary>
+    <releaseNotes>Initial release for partial functions in Array, List, Seq, and Map modules</releaseNotes>
+    <license type="expression">CC0-1.0</license>
+    <projectUrl>https://github.com/ntwilson/SafetyFirst.Strict</projectUrl>
+    <tags>result safety collections functional-programming</tags>
+
+    <dependencies>
+      <dependency id="FSharp.Core" version="4.1.17" />
+      <dependency id="System.ValueTuple" version="4.5.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="README.md" target="" />
+    <file src="SafetyFirst.Strict\bin\Release\netstandard2.0\SafetyFirst.dll" target="lib\netstandard2.0" />
+    <file src="SafetyFirst.Strict\bin\Release\netstandard2.0\SafetyFirst.XML" target="lib\netstandard2.0" />
+    <file src="SafetyFirst.Strict\bin\Release\netstandard2.0\SafetyFirst.pdb" target="lib\netstandard2.0" />
+    <file src="SafetyFirst.Strict\bin\Release\net45\SafetyFirst.dll" target="lib\net45" />
+    <file src="SafetyFirst.Strict\bin\Release\net45\SafetyFirst.XML" target="lib\net45" />
+    <file src="SafetyFirst.Strict\bin\Release\net45\SafetyFirst.pdb" target="lib\net45" />
+    <file src="SafetyFirst.Strict\**\*.fs" target="src\SafetyFirst" />
+  </files>
+</package>
