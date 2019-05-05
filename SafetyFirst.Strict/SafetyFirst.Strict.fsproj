@@ -13,6 +13,7 @@
     <Compile Include="List.fs" />
     <Compile Include="Map.fs" />
     <Compile Include="Seq.fs" />
+    <Compile Include="Double.fs" />
   </ItemGroup>
 
   <ItemGroup>
