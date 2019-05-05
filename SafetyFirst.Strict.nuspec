@@ -7,7 +7,7 @@
     <owners>nathan wilson</owners>
     <description>Select partial functions made to have warnings in F#</description>
     <summary>Select partial functions made to have warnings in F#</summary>
-    <releaseNotes>Initial release for partial functions in Array, List, Seq, and Map modules</releaseNotes>
+    <releaseNotes>Initial release for partial functions in collection modules and parsers</releaseNotes>
     <license type="expression">CC0-1.0</license>
     <projectUrl>https://github.com/ntwilson/SafetyFirst.Strict</projectUrl>
     <tags>result safety collections functional-programming</tags>
@@ -19,12 +19,12 @@
   </metadata>
   <files>
     <file src="README.md" target="" />
-    <file src="SafetyFirst.Strict\bin\Release\netstandard2.0\SafetyFirst.dll" target="lib\netstandard2.0" />
-    <file src="SafetyFirst.Strict\bin\Release\netstandard2.0\SafetyFirst.XML" target="lib\netstandard2.0" />
-    <file src="SafetyFirst.Strict\bin\Release\netstandard2.0\SafetyFirst.pdb" target="lib\netstandard2.0" />
-    <file src="SafetyFirst.Strict\bin\Release\net45\SafetyFirst.dll" target="lib\net45" />
-    <file src="SafetyFirst.Strict\bin\Release\net45\SafetyFirst.XML" target="lib\net45" />
-    <file src="SafetyFirst.Strict\bin\Release\net45\SafetyFirst.pdb" target="lib\net45" />
-    <file src="SafetyFirst.Strict\**\*.fs" target="src\SafetyFirst" />
+    <file src="SafetyFirst.Strict\bin\Release\netstandard2.0\SafetyFirst.Strict.dll" target="lib\netstandard2.0" />
+    <file src="SafetyFirst.Strict\bin\Release\netstandard2.0\SafetyFirst.Strict.XML" target="lib\netstandard2.0" />
+    <file src="SafetyFirst.Strict\bin\Release\netstandard2.0\SafetyFirst.Strict.pdb" target="lib\netstandard2.0" />
+    <file src="SafetyFirst.Strict\bin\Release\net45\SafetyFirst.Strict.dll" target="lib\net45" />
+    <file src="SafetyFirst.Strict\bin\Release\net45\SafetyFirst.Strict.XML" target="lib\net45" />
+    <file src="SafetyFirst.Strict\bin\Release\net45\SafetyFirst.Strict.pdb" target="lib\net45" />
+    <file src="SafetyFirst.Strict\**\*.fs" target="src\SafetyFirst.Strict" />
   </files>
 </package>

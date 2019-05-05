@@ -7,55 +7,16 @@ module Map
 [<CompilerMessage("This is a partial function.  Use Map.tryFind or Map.find' instead.", 12101, IsHidden=true, IsError=false)>]
 let inline find key map = Map.find key map 
 
-// /// <summary>
-// /// Lookup an element in the map, returning an Ok value if the element is in the domain of the map
-// /// and an Error if not.
-// /// </summary>
-// let inline findSafe key map = find' key map
+/// <summary>
+/// Evaluates the function on each mapping in the collection. Returns the key for the first mapping where the function returns 'true'. 
+/// Throws if no such element exists.
+/// </summary>
+[<CompilerMessage("This is a partial function.  Use Map.tryFindKey instead.", 12101, IsHidden=true, IsError=false)>]
+let inline findKey predicate table = Map.findKey predicate table
 
-// let private duplicates xs = 
-//   [ for (x, count) in xs |> Seq.countBy fst do if count > 1 then yield x ]
-
-// /// <summary>
-// /// Returns a new map made from the given bindings, provided all keys are unique.
-// /// Returns an Error if any duplicate keys were found.
-// /// </summary>
-// let ofList' xs = 
-//   let result = Map.ofList xs
-//   if List.length xs <> Map.count result
-//   then Error <| duplicateKeysErr (duplicates xs) 
-//   else Ok result
-
-// /// <summary>
-// /// Returns a new map made from the given bindings, provided all keys are unique.
-// /// Returns an Error if any duplicate keys were found.
-// /// </summary>
-// let inline ofListSafe xs = ofList' xs 
-
-// /// <summary>
-// /// Returns a new map made from the given bindings, provided all keys are unique.
-// /// Returns an Error if any duplicate keys were found.
-// /// </summary>
-// let ofArray' xs =
-//   let result = Map.ofArray xs
-//   if Array.length xs <> Map.count result
-//   then Error <| duplicateKeysErr (duplicates xs)
-//   else Ok result
-
-// /// <summary>
-// /// Returns a new map made from the given bindings, provided all keys are unique.
-// /// Returns an Error if any duplicate keys were found.
-// /// </summary>
-// let inline ofArraySafe xs = ofArray' xs
-
-// /// <summary>
-// /// Returns a new map made from the given bindings, provided all keys are unique.
-// /// Returns an Error if any duplicate keys were found.
-// /// </summary>
-// let inline ofSeq' xs = ofArray' (Seq.toArray xs)
-
-// /// <summary>
-// /// Returns a new map made from the given bindings, provided all keys are unique.
-// /// Returns an Error if any duplicate keys were found.
-// /// </summary>
-// let inline ofSeqSafe xs = ofSeq' xs
+/// <summary>
+/// Searches the map looking for the first element where the given function returns a Some value.
+/// Throws if the element is not found.
+/// </summary>
+[<CompilerMessage("This is a partial function.  Use Map.tryPick or Seq.pick' instead.", 12101, IsHidden=true, IsError=false)>]
+let inline pick chooser table = Map.pick chooser table

@@ -1,24 +1,23 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net45;netcoreapp2.0;netstandard2.0</TargetFrameworks>
     <DocumentationFile>bin\$(Configuration)\net45\$(AssemblyName).XML</DocumentationFile>
-    <DisableImplicitFSharpCoreReference>true</DisableImplicitFSharpCoreReference>
-    <DisableImplicitSystemValueTupleReference>true</DisableImplicitSystemValueTupleReference>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Include="Array.fs" />
     <Compile Include="List.fs" />
     <Compile Include="Map.fs" />
     <Compile Include="Seq.fs" />
+    <Compile Include="Set.fs" />
+    <Compile Include="Byte.fs" />
+    <Compile Include="DateTime.fs" />
     <Compile Include="Double.fs" />
+    <Compile Include="Int16.fs" />
+    <Compile Include="Int32.fs" />
+    <Compile Include="Int64.fs" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="fsharp.core" Version="4.1.17" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
-
 </Project>

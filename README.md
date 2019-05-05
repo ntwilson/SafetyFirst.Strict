@@ -5,4 +5,4 @@ This library is an add-on for [SafetyFirst](https://www.nuget.org/packages/Safet
 <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 ```
 
-These compiler warnings will appear in any project that contains a reference to SafetyFirst.Strict.
+These compiler warnings will appear in any project that contains a reference to SafetyFirst.Strict.  The warnings can be bypassed by fully qualifying the method name and thus bypassing the shadowed version, e.g., using `FSharp.Collections.Array.head` instead of `Array.head`.
