@@ -2,12 +2,12 @@
 <package >
   <metadata>
     <id>SafetyFirst.Strict</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <authors>nathan wilson</authors>
     <owners>nathan wilson</owners>
     <description>Select partial functions made to have warnings in F#</description>
     <summary>Select partial functions made to have warnings in F#</summary>
-    <releaseNotes>Initial release for partial functions in collection modules and parsers</releaseNotes>
+    <releaseNotes>Remove most parsers from this package, since it makes any C# project with this as a transitive dependency unusable.</releaseNotes>
     <license type="expression">CC0-1.0</license>
     <projectUrl>https://github.com/ntwilson/SafetyFirst.Strict</projectUrl>
     <tags>result safety collections functional-programming</tags>
