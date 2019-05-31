@@ -4,17 +4,12 @@
     <DocumentationFile>bin\$(Configuration)\net45\$(AssemblyName).XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Conversions.fs" />
     <Compile Include="Array.fs" />
     <Compile Include="List.fs" />
     <Compile Include="Map.fs" />
     <Compile Include="Seq.fs" />
     <Compile Include="Set.fs" />
-    <Compile Include="Byte.fs" />
-    <Compile Include="DateTime.fs" />
-    <Compile Include="Double.fs" />
-    <Compile Include="Int16.fs" />
-    <Compile Include="Int32.fs" />
-    <Compile Include="Int64.fs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="fsharp.core" Version="4.1.17" />
