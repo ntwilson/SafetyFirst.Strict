@@ -4,7 +4,7 @@ module Seq
 /// Returns the average of the elements in the sequence.
 /// Throws if <c>source</c> has no elements.
 /// </summary>
-[<CompilerMessage("This is a partial function.  Use Seq.averageSafe or Seq.average' instead.", 12101, IsHidden=true, IsError=false)>]
+[<CompilerMessage("This is a partial function.  Use FSeq.averageSafe or FSeq.average' instead.", 12101, IsHidden=true, IsError=false)>]
 let inline average source = Seq.average source
 
 /// <summary>
@@ -12,8 +12,21 @@ let inline average source = Seq.average source
 /// of the seq.
 /// Throws if <c>xs</c> has no elements.
 /// </summary>
-[<CompilerMessage("This is a partial function.  Use Seq.averageBySafe or Seq.averageBy' instead.", 12101, IsHidden=true, IsError=false)>]
+[<CompilerMessage("This is a partial function.  Use FSeq.averageBySafe or FSeq.averageBy' instead.", 12101, IsHidden=true, IsError=false)>]
 let inline averageBy selector xs = Seq.averageBy selector xs
+
+/// <summary>
+/// Tests if the sequence contains the specified element.
+/// </summary>
+[<CompilerMessage("This function has no meaning for infinite inputs.  Use FSeq.contains instead.", 12101, IsHidden=true, IsError=false)>]
+let inline contains element xs = Seq.contains element xs
+
+/// <summary>
+/// Applies a key-generating function to each element of a sequence and returns a sequence yielding unique keys and their number of occurrences in the original sequence.
+/// Note that this function returns a sequence that digests the whole initial sequence as soon as that sequence is iterated. As a result this function should not be used with large or infinite sequences. The function makes no assumption on the ordering of the original sequence.
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.countBy instead.", 12101, IsHidden=true, IsError=false)>]
+let inline countBy projection xs = Seq.countBy projection xs
 
 /// <summary>
 /// Divides the input seq into chunks of size at most <c>size</c>.
@@ -29,6 +42,9 @@ let inline chunkBySize size xs = Seq.chunkBySize size xs
 [<CompilerMessage("This is a partial function.  Use Seq.exactlyOneSafe or Seq.exactlyOne' instead.", 12101, IsHidden=true, IsError=false)>]
 let inline exactlyOne xs = Seq.exactlyOne xs
 
+[<CompilerMessage("This function has no meaning for infinite inputs.  Use FSeq.exists instead.", 12101, IsHidden=true, IsError=false)>]
+let inline exists predicate xs = Seq.exists predicate xs
+
 /// <summary>
 /// Returns the first element for which the given function returns True.
 /// Throws if no such element is found.
@@ -40,7 +56,7 @@ let inline find predicate xs = Seq.find predicate xs
 /// Returns the last element for which the given function returns True.
 /// Throws if no such element exists.
 /// </summary>
-[<CompilerMessage("This is a partial function.  Use Seq.findBackSafe or Seq.findBack' instead.", 12101, IsHidden=true, IsError=false)>]
+[<CompilerMessage("This is a partial function.  Use FSeq.findBackSafe or FSeq.findBack' instead.", 12101, IsHidden=true, IsError=false)>]
 let inline findBack predicate xs = Seq.findBack predicate xs
 
 /// <summary>
@@ -56,8 +72,37 @@ let inline findIndex predicate xs = Seq.findIndex predicate xs
 /// that satisfies the given predicate.
 /// Throws if no such element exists.
 /// </summary>
-[<CompilerMessage("This is a partial function.  Use Seq.findIndexBackSafe or Seq.findIndexBack' instead.", 12101, IsHidden=true, IsError=false)>]
+[<CompilerMessage("This is a partial function.  Use FSeq.findIndexBackSafe or FSeq.findIndexBack' instead.", 12101, IsHidden=true, IsError=false)>]
 let inline findIndexBack predicate xs = Seq.findIndexBack predicate xs
+
+/// <summary>
+/// Applies a function to each element of the collection, threading an accumulator argument through the computation. 
+/// If the input function is <c>f</c> and the elements are <c>i0...iN</c> then computes <c>f (... (f s i0)...) iN</c>
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.fold instead.", 12101, IsHidden=true, IsError=false)>]
+let inline fold folder initialState xs = Seq.fold folder initialState xs
+
+/// <summary>
+/// Applies a function to each element of the collection, starting from the end, threading an accumulator argument through the computation. 
+/// If the input function is <c>f</c> and the elements are <c>i0...iN</c> then computes <c>f i0 (... (f iN s)...)</c>.
+/// This function consumes the whole input sequence before returning the result.
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.foldBack instead.", 12101, IsHidden=true, IsError=false)>]
+let inline foldBack folder xs initialState = Seq.foldBack folder xs initialState
+
+/// <summary>
+/// Tests if all elements of the sequence satisfy the given predicate.
+/// The predicate is applied to the elements of the input sequence. If any application returns false then the overall result is false and no further elements are tested. Otherwise, true is returned.
+/// </summary>
+[<CompilerMessage("This function has no meaning for infinite inputs.  Use FSeq.forall instead.", 12101, IsHidden=true, IsError=false)>]
+let inline forall predicate xs = Seq.forall predicate xs 
+
+/// <summary>
+/// Applies a key-generating function to each element of a sequence and yields a sequence of unique keys. Each unique key contains a sequence of all elements that match to this key.
+/// This function returns a sequence that digests the whole initial sequence as soon as that sequence is iterated. As a result this function should not be used with large or infinite sequences. The function makes no assumption on the ordering of the original sequence.
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.groupBy instead.", 12101, IsHidden=true, IsError=false)>]
+let inline groupBy projection xs = Seq.groupBy projection xs
 
 /// <summary>
 /// Returns the first element of the seq.
@@ -74,38 +119,57 @@ let inline head xs = Seq.head xs
 let inline item index xs = Seq.item index xs
 
 /// <summary>
+/// Applies the given function to each element of the collection.
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.iter instead.", 12101, IsHidden=true, IsError=false)>]
+let inline iter action xs = Seq.iter action xs
+
+/// <summary>
+/// Applies the given function to each element of the collection.
+/// The integer passed to the function indicates the index of element.
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.iteri instead.", 12101, IsHidden=true, IsError=false)>]
+let inline iteri action xs = Seq.iteri action xs
+
+/// <summary>
 /// Returns the last element of the seq.
 /// Throws if <c>xs</c> has no elements.
 /// </summary>
-[<CompilerMessage("This is a partial function.  Use Seq.lastSafe or Seq.last' instead.", 12101, IsHidden=true, IsError=false)>]
+[<CompilerMessage("This is a partial function.  Use FSeq.lastSafe or FSeq.last' instead.", 12101, IsHidden=true, IsError=false)>]
 let inline last xs = Seq.last xs
+
+/// <summary>
+/// Returns the length of the sequence.
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.length instead.", 12101, IsHidden=true, IsError=false)>]
+let inline length xs = Seq.length xs
 
 /// <summary>
 /// Returns the greatest of all elements of the seq, compared via Operators.max.
 /// Throws if <c>xs</c> has no elements.
 /// </summary>
-[<CompilerMessage("This is a partial function.  Use Seq.maxSafe or Seq.max' instead.", 12101, IsHidden=true, IsError=false)>]
+[<CompilerMessage("This is a partial function.  Use FSeq.maxSafe or FSeq.max' instead.", 12101, IsHidden=true, IsError=false)>]
 let inline max<'a when 'a : comparison> (xs:'a seq) = Seq.max xs
 
 /// <summary>
 /// Returns the greatest of all elements of the seq, compared via Operators.max on the function result.
 /// Throws if <c>xs</c> has no elements.
 /// </summary>
-[<CompilerMessage("This is a partial function.  Use Seq.maxBySafe or Seq.maxBy' instead.", 12101, IsHidden=true, IsError=false)>]
+[<CompilerMessage("This is a partial function.  Use FSeq.maxBySafe or FSeq.maxBy' instead.", 12101, IsHidden=true, IsError=false)>]
 let inline maxBy<'a, 'b when 'b : comparison> (projection:'a -> 'b) (xs:'a seq) = Seq.maxBy projection xs
 
 /// <summary>
 /// Returns the lowest of all elements of the seq, compared via Operators.min.
 /// Throws if <c>xs</c> has no elements.
 /// </summary>
-[<CompilerMessage("This is a partial function.  Use Seq.minSafe or Seq.min' instead.", 12101, IsHidden=true, IsError=false)>]
+[<CompilerMessage("This is a partial function.  Use FSeq.minSafe or FSeq.min' instead.", 12101, IsHidden=true, IsError=false)>]
 let inline min<'a when 'a : comparison> (xs:'a seq) = Seq.min xs
 
 /// <summary>
 /// Returns the lowest of all elements of the seq, compared via Operators.min on the function result.
 /// Throws if <c>xs</c> has no elements.
 /// </summary>
-[<CompilerMessage("This is a partial function.  Use Seq.minBySafe or Seq.minBy' instead.", 12101, IsHidden=true, IsError=false)>]
+[<CompilerMessage("This is a partial function.  Use FSeq.minBySafe or FSeq.minBy' instead.", 12101, IsHidden=true, IsError=false)>]
 let inline minBy<'a, 'b when 'b : comparison> (projection:'a -> 'b) (xs:'a seq) = Seq.minBy projection xs
 
 /// <summary>
@@ -123,7 +187,7 @@ let inline pick chooser xs = Seq.pick chooser xs
 /// Return the final result.
 /// Throws if the seq is empty.
 /// </summary>
-[<CompilerMessage("This is a partial function.  Use Seq.reduce' or Seq.fold instead.", 12101, IsHidden=true, IsError=false)>]
+[<CompilerMessage("This is a partial function.  Use FSeq.reduce' or FSeq.fold instead.", 12101, IsHidden=true, IsError=false)>]
 let inline reduce reduction xs = Seq.reduce reduction xs
 
 /// <summary>
@@ -132,8 +196,15 @@ let inline reduce reduction xs = Seq.reduce reduction xs
 /// then computes <c>f i0 (...(f iN-1 iN))</c>.
 /// Throws if the seq is empty.
 /// </summary>
-[<CompilerMessage("This is a partial function.  Use Seq.reduceBack' or Seq.foldBack instead.", 12101, IsHidden=true, IsError=false)>]
+[<CompilerMessage("This is a partial function.  Use FSeq.reduceBack' or FSeq.foldBack instead.", 12101, IsHidden=true, IsError=false)>]
 let inline reduceBack reduction xs = Seq.reduceBack reduction xs 
+
+/// <summary>
+/// Returns a new sequence with the elements in reverse order.
+/// This function consumes the whole input sequence before yielding the first element of the reversed sequence.
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.rev instead.", 12101, IsHidden=true, IsError=false)>]
+let inline rev xs = Seq.rev xs
 
 /// <summary>
 /// Returns a seq that skips N elements of the underlying seq and then yields the
@@ -144,11 +215,65 @@ let inline reduceBack reduction xs = Seq.reduceBack reduction xs
 let inline skip count xs = Seq.skip count xs
 
 /// <summary>
+/// Yields a sequence ordered by keys.
+/// This function returns a sequence that digests the whole initial sequence as soon as that sequence is iterated. As a result this function should not be used with large or infinite sequences. The function makes no assumption on the ordering of the original sequence.
+/// This is a stable sort, that is the original order of equal elements is preserved. This function consumes the whole input sequence before yielding the first element of the result sequence.
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.sort instead.", 12101, IsHidden=true, IsError=false)>]
+let inline sort xs = Seq.sort xs
+
+/// <summary>
+/// Applies a key-generating function to each element of a sequence and yield a sequence ordered by keys. The keys are compared using generic comparison as implemented by <c>Operators.compare</c>.
+/// This function returns a sequence that digests the whole initial sequence as soon as that sequence is iterated. As a result this function should not be used with large or infinite sequences. The function makes no assumption on the ordering of the original sequence.
+/// This is a stable sort, that is the original order of equal elements is preserved.
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.sortBy instead.", 12101, IsHidden=true, IsError=false)>]
+let inline sortBy projection xs = Seq.sortBy projection xs
+
+/// <summary>
+/// Yields a sequence ordered descending by keys.
+/// This function returns a sequence that digests the whole initial sequence as soon as that sequence is iterated. As a result this function should not be used with large or infinite sequences. The function makes no assumption on the ordering of the original sequence.
+/// This is a stable sort, that is the original order of equal elements is preserved. This function consumes the whole input sequence before yielding the first element of the result sequence.
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.sortDescending instead.", 12101, IsHidden=true, IsError=false)>]
+let inline sortDescending xs = Seq.sortDescending xs
+
+/// <summary>
+/// Applies a key-generating function to each element of a sequence and yield a sequence ordered descending by keys. The keys are compared using generic comparison as implemented by <c>Operators.compare</c>.
+/// This function returns a sequence that digests the whole initial sequence as soon as that sequence is iterated. As a result this function should not be used with large or infinite sequences. The function makes no assumption on the ordering of the original sequence.
+/// This is a stable sort, that is the original order of equal elements is preserved.
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.sortByDescending instead.", 12101, IsHidden=true, IsError=false)>]
+let inline sortByDescending projection xs = Seq.sortByDescending projection xs
+
+/// <summary>
+/// Yields a sequence ordered using the given comparison function.
+/// This function returns a sequence that digests the whole initial sequence as soon as that sequence is iterated. As a result this function should not be used with large or infinite sequences. The function makes no assumption on the ordering of the original sequence.
+/// This is a stable sort, that is the original order of equal elements is preserved. This function consumes the whole input sequence before yielding the first element of the result sequence.
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.sortWith instead.", 12101, IsHidden=true, IsError=false)>]
+let inline sortWith comparer xs = Seq.sortWith comparer xs
+
+/// <summary>
 /// Splits the input seq into at most count chunks.
 /// Throws if <c>count</c> is not positive.
 /// </summary>
-[<CompilerMessage("This is a partial function.  Use Seq.splitInto' or Seq.splitIntoN instead.", 12101, IsHidden=true, IsError=false)>]
+[<CompilerMessage("This is a partial function.  Use FSeq.splitInto' or FSeq.splitIntoN instead.", 12101, IsHidden=true, IsError=false)>]
 let inline splitInto count xs = Seq.splitInto count xs
+
+/// <summary>
+/// Returns the sum of the elements in the sequence.
+/// The elements are summed using the <c>+</c> operator and <c>Zero</c> property associated with the generated type.
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.sum instead.", 12101, IsHidden=true, IsError=false)>]
+let inline sum xs = Seq.sum xs
+
+/// <summary>
+/// Returns the sum of the results generated by applying the function to each element of the sequence.
+/// The generated elements are summed using the <c>+</c> operator and <c>Zero</c> property associated with the generated type.
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.sumBy instead.", 12101, IsHidden=true, IsError=false)>]
+let inline sumBy projection xs = Seq.sumBy projection xs
 
 /// <summary>
 /// Returns a seq that skips 1 element of the underlying seq and then yields the
@@ -164,6 +289,19 @@ let inline tail xs = Seq.tail xs
 /// </summary>
 [<CompilerMessage("This is a partial function.  Use Seq.take' or Seq.truncate instead.", 12101, IsHidden=true, IsError=false)>]
 let inline take count xs = Seq.take count xs
+
+/// <summary>
+/// Returns the transpose of the given sequence of sequences.
+/// This function returns a sequence that digests the whole initial sequence as soon as that sequence is iterated. As a result this function should not be used with large or infinite sequences.
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.transpose instead.", 12101, IsHidden=true, IsError=false)>]
+let inline transpose xs = Seq.transpose xs
+
+/// <summary>
+/// Returns the last element of the sequence. Return None if no such element exists.
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.tryLast instead.", 12101, IsHidden=true, IsError=false)>]
+let inline tryLast xs = Seq.tryLast xs
 
 /// <summary>
 /// Returns a seq that yields sliding windows containing elements drawn from the input
