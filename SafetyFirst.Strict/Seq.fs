@@ -145,6 +145,20 @@ let inline last xs = Seq.last xs
 let inline length xs = Seq.length xs
 
 /// <summary>
+/// Combines map and fold. Builds a new collection whose elements are the results of applying the given function to each of the elements of the collection. The function is also used to accumulate a final value.
+/// This function digests the whole initial sequence as soon as it is called. As a result this function should not be used with large or infinite sequences. This function consumes the whole input sequence before yielding the first element of the result sequence.
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.mapFold instead.", 12101, IsHidden=true, IsError=false)>]
+let inline mapFold mapping initialState xs = Seq.mapFold mapping initialState xs
+
+/// <summary>
+/// Combines map and foldBack. Builds a new collection whose elements are the results of applying the given function to each of the elements of the collection. The function is also used to accumulate a final value.
+/// This function digests the whole initial sequence as soon as it is called. As a result this function should not be used with large or infinite sequences. This function consumes the whole input sequence before yielding the first element of the result sequence.
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.mapFoldBack instead.", 12101, IsHidden=true, IsError=false)>]
+let inline mapFoldBack mapping xs initialState = Seq.mapFoldBack mapping xs initialState
+
+/// <summary>
 /// Returns the greatest of all elements of the seq, compared via Operators.max.
 /// Throws if <c>xs</c> has no elements.
 /// </summary>
@@ -205,6 +219,14 @@ let inline reduceBack reduction xs = Seq.reduceBack reduction xs
 /// </summary>
 [<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.rev instead.", 12101, IsHidden=true, IsError=false)>]
 let inline rev xs = Seq.rev xs
+
+/// <summary>
+/// Like foldBack, but returns the sequence of intermediary and final results.
+/// This function returns a sequence that digests the whole initial sequence as soon as that sequence is iterated. As a result this function should not be used with large or infinite sequences.
+/// This function consumes the whole input sequence before yielding the first element of the result sequence.
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.scanBack instead.", 12101, IsHidden=true, IsError=false)>]
+let inline scanBack folder xs initialState = Seq.scanBack folder xs initialState
 
 /// <summary>
 /// Returns a seq that skips N elements of the underlying seq and then yields the
@@ -298,6 +320,20 @@ let inline take count xs = Seq.take count xs
 let inline transpose xs = Seq.transpose xs
 
 /// <summary>
+/// Returns the last element for which the given function returns True. Return None if no such element exists.
+/// This function digests the whole initial sequence as soon as it is called. As a result this function should not be used with large or infinite sequences. This function consumes the whole input sequence before returning the result.
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.tryFindBack instead.", 12101, IsHidden=true, IsError=false)>]
+let inline tryFindBack predicate xs = Seq.tryFindBack predicate xs
+
+/// <summary>
+/// Returns the index of the last element in the sequence that satisfies the given predicate. Return None if no such element exists.
+/// This function digests the whole initial sequence as soon as it is called. As a result this function should not be used with large or infinite sequences. This function consumes the whole input sequence before returning the result.
+/// </summary>
+[<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.tryFindIndexBack instead.", 12101, IsHidden=true, IsError=false)>]
+let inline tryFindIndexBack predicate xs = Seq.tryFindIndexBack predicate xs
+
+/// <summary>
 /// Returns the last element of the sequence. Return None if no such element exists.
 /// </summary>
 [<CompilerMessage("This is a partial function (diverges for infinite inputs).  Use FSeq.tryLast instead.", 12101, IsHidden=true, IsError=false)>]
@@ -310,3 +346,5 @@ let inline tryLast xs = Seq.tryLast xs
 /// </summary>
 [<CompilerMessage("This is a partial function.  Use Seq.windowed' or Seq.window instead.", 12101, IsHidden=true, IsError=false)>]
 let inline windowed size xs = Seq.windowed size xs
+
+
