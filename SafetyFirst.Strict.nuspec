@@ -2,12 +2,12 @@
 <package >
   <metadata>
     <id>SafetyFirst.Strict</id>
-    <version>1.1.0</version>
+    <version>4.0.1</version>
     <authors>nathan wilson</authors>
     <owners>nathan wilson</owners>
     <description>Select partial functions made to have warnings in F#</description>
     <summary>Select partial functions made to have warnings in F#</summary>
-    <releaseNotes>Adds all functions from the Seq module that diverge for infinite inputs</releaseNotes>
+    <releaseNotes>Restores the Seq module functions.</releaseNotes>
     <license type="expression">CC0-1.0</license>
     <projectUrl>https://github.com/ntwilson/SafetyFirst.Strict</projectUrl>
     <tags>result safety collections functional-programming</tags>
